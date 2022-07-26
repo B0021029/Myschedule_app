@@ -1,0 +1,60 @@
+myschedule CREATE TABLE
+
+CREATE DATABASE mySchedule;
+
+USE mySchedule;
+
+CREATE TABLE kinds(
+    kindsID  tinyint       NOT NULL AUTO_INCREMENT,
+    kinds    NVARCHAR(10)  NOT NULL,
+    PRIMARY KEY (kindsID)
+);
+
+INSERT INTO kinds (kinds) VALUES
+  ("学校"),
+  ("試験・模試"), 
+  ("課題"),
+  ("行事"),
+  ("部活"),
+  ("就活"),
+  ("塾"),
+  ("イベント"),
+  ("仕事"),
+  ("帰省"),
+  ("アルバイト"),
+  ("旅行");
+  ("その他"),
+
+CREATE TABLE users(
+  userID tinyint    NOT NULL AUTO_INCREMENT,
+  userName nvarchar(20)   NOT NULL,
+  password  nchar(20)     NOT NULL,
+  PRIMARY KEY(userID)
+);
+
+INSERT INTO  users (userName, password) VALUES
+ ("郁子","Chathrine"),
+ ("大輔","David"),
+ ("美咲","Michelle"),
+ ("大斗","Henry");
+
+CREATE TABLE schedule(
+  scheduleID   int  NOT NULL AUTO_INCREMENT,
+  userID       tinyint NOT NULL,
+  days         date    NOT NULL,
+  kindsID      tinyint NOT NULL,
+  plan         nvarchar(50),
+  PRIMARY KEY (scheduleID),
+  FOREIGN KEY (userID) REFERENCES users(userID),
+  FOREIGN KEY (kindsID) REFERENCES kinds(kindsID)
+);
+
+
+INSERT INTO schedule(userID, days, kindsID, plan) VALUES
+ (1, "2022-06-18", 2, "セキュリティマネジメント試験:防府会場10:30集合");
+ (4, "2022-07-27", 5, "ソフトテニス引退試合　宇部中央テニスコート：８：００集合");
+ (1, "2022-10-9", 2, "応用情報技術者試験：山口大学　9:15集合");
+  
+
+
+
